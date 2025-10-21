@@ -1,0 +1,53 @@
+{
+  "name": "sveltekit-cloudflare-durable-objects",
+  "version": "0.1.0",
+  "description": "Bridge the gap between SvelteKit and Cloudflare Durable Objects - automatic export of Durable Objects to your worker bundle",
+  "type": "module",
+  "main": "./dist/plugin.js",
+  "types": "./dist/plugin.d.ts",
+  "bin": {
+    "sveltekit-cloudflare-do": "./bin/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/plugin.d.ts",
+      "import": "./dist/plugin.js"
+    },
+    "./cli": {
+      "types": "./dist/cli.d.ts",
+      "import": "./dist/cli.js"
+    }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "pnpm build"
+  },
+  "keywords": [
+    "sveltekit",
+    "cloudflare",
+    "durable-objects",
+    "vite-plugin",
+    "workers",
+    "cloudflare-workers"
+  ],
+  "author": "Jilles Soeters",
+  "license": "MIT",
+  "peerDependencies": {
+    "vite": "^5.0.0 || ^6.0.0 || ^7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.0.0"
+  }
+}
