@@ -72,7 +72,7 @@ export function exportDurableObjects(options: DurableObjectsExporterOptions = {}
   if (!existsSync(workerPath)) {
     return {
       success: false,
-      message: `Worker file not found at ${workerPath}. Make sure to run the build first.`,
+      message: `Worker file not found at ${workerPath}.\n\nMake sure to run the SvelteKit build first:\n  npm run build\n  # or\n  pnpm build\n  # or\n  vite build`,
     };
   }
 
@@ -103,7 +103,7 @@ export function exportDurableObjects(options: DurableObjectsExporterOptions = {}
   if (missingFiles.length > 0) {
     return {
       success: false,
-      message: `Durable Object files not found: ${missingFiles.join(', ')}`,
+      message: `Durable Object files not found: ${missingFiles.join(', ')}\n\nMake sure:\n  1. The file paths are correct relative to your project root\n  2. Your Durable Object classes are created in the specified locations\n  3. The class names in your wrangler.jsonc match the exported classes`,
     };
   }
 

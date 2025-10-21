@@ -37,6 +37,17 @@
   ],
   "author": "Jilles Soeters",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jillesme/sveltekit-cloudflare-durable-objects.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jillesme/sveltekit-cloudflare-durable-objects/issues"
+  },
+  "homepage": "https://github.com/jillesme/sveltekit-cloudflare-durable-objects#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "peerDependencies": {
     "vite": "^5.0.0 || ^6.0.0 || ^7.0.0"
   },

@@ -1,5 +1,20 @@
+# Source files (only publish dist/)
 src
 tsconfig.json
+
+# Development files
+CLAUDE.md
+.gitignore
+.git
+.github
+*.test.ts
+*.test.js
+*.spec.ts
+*.spec.js
+
+# OS and logs
 *.log
 .DS_Store
+
+# Dependencies
 node_modules
