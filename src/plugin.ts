@@ -31,19 +31,31 @@ export default function cloudflareDoExporter(
   return {
     name: "sveltekit-cloudflare-durable-objects",
 
+    // 'post' ensures this plugin's hooks run after all other plugins,
+    // including the SvelteKit plugin that runs the Cloudflare adapter.
+    enforce: "post",
+
+    // Only run during builds — no-op during `vite dev`.
+    apply: "build",
+
     configResolved(config) {
-      // Store the resolved project root
       root = config.root;
     },
 
     closeBundle() {
-      // Run after the bundle is written
       const result = exportDurableObjects({
         ...options,
         root,
       });
 
-      // Exit with error if the export failed
+      // In Vite v7+, closeBundle fires once per environment (client, SSR, …).
+      // The SvelteKit adapter writes _worker.js during the SSR environment's
+      // closeBundle. During the client environment pass the file doesn't exist
+      // yet — that is expected, so we skip silently and let the SSR pass handle it.
+      if (result.workerNotFound) {
+        return;
+      }
+
       if (!result.success && !result.alreadyExported) {
         throw new Error(`[sveltekit-cloudflare-do] ${result.message}`);
       }

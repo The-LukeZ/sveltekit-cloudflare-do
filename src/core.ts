@@ -38,6 +38,13 @@ export interface ExportResult {
   message: string;
   filesExported?: string[];
   alreadyExported?: boolean;
+  /**
+   * True when the worker file was not found on disk.
+   * The Vite plugin uses this to silently skip during build passes
+   * where the SvelteKit adapter has not yet written the file
+   * (e.g. the client-environment pass in Vite v7+).
+   */
+  workerNotFound?: boolean;
 }
 
 const DEFAULT_OPTIONS: Required<Omit<DurableObjectsExporterOptions, "root">> = {
@@ -114,6 +121,7 @@ export function exportDurableObjects(
   if (!existsSync(workerPath)) {
     return {
       success: false,
+      workerNotFound: true,
       message: `Worker file not found at ${workerPath}.\n\nMake sure to run the SvelteKit build first:\n  npm run build\n  # or\n  pnpm build\n  # or\n  vite build`,
     };
   }
