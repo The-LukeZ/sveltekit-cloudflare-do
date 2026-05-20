@@ -51,7 +51,8 @@
   "devDependencies": {
     "@types/node": "^22.19.19",
     "tsdown": "^0.22.0",
-    "typescript": "latest"
+    "typescript": "latest",
+    "vite": "^8.0.13"
   },
   "dependencies": {
     "sveltekit-cloudflare-durable-objects": "link:"

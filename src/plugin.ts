@@ -1,5 +1,8 @@
-import type { Plugin } from 'vite';
-import { exportDurableObjects, type DurableObjectsExporterOptions } from './core.js';
+import type { Plugin } from "vite";
+import {
+  exportDurableObjects,
+  type DurableObjectsExporterOptions,
+} from "./core.js";
 
 /**
  * Vite plugin to automatically export Durable Objects to the Cloudflare Worker bundle
@@ -21,12 +24,12 @@ import { exportDurableObjects, type DurableObjectsExporterOptions } from './core
  * ```
  */
 export default function cloudflareDoExporter(
-  options: DurableObjectsExporterOptions = {}
+  options: DurableObjectsExporterOptions = {},
 ): Plugin {
   let root: string;
 
   return {
-    name: 'sveltekit-cloudflare-durable-objects',
+    name: "sveltekit-cloudflare-durable-objects",
 
     configResolved(config) {
       // Store the resolved project root
@@ -52,4 +55,4 @@ export default function cloudflareDoExporter(
 export { cloudflareDoExporter };
 
 // Re-export types for convenience
-export type { DurableObjectsExporterOptions, ExportResult } from './core.js';
+export type { DurableObjectsExporterOptions, ExportResult } from "./core.js";

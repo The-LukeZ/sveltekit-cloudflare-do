@@ -9,6 +9,6 @@ export default defineConfig({
   clean: true,
   exports: {
     bin: "src/cli.ts",
-    packageJson: true,
+    // packageJson: true,
   },
 });

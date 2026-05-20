@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 
-import { readFileSync, existsSync } from 'fs';
-import { resolve } from 'path';
-import { exportDurableObjects, type DurableObjectsExporterOptions } from './core.js';
+import { readFileSync, existsSync } from "fs";
+import { resolve } from "path";
+import {
+  exportDurableObjects,
+  type DurableObjectsExporterOptions,
+} from "./core.js";
 
 const HELP_TEXT = `
 sveltekit-cloudflare-durable-objects - Export Durable Objects to Cloudflare Workers
@@ -54,25 +57,25 @@ function parseArgs(args: string[]): CliOptions {
     const arg = args[i];
 
     switch (arg) {
-      case '--help':
-      case '-h':
+      case "--help":
+      case "-h":
         options.help = true;
         break;
 
-      case '--version':
-      case '-v':
+      case "--version":
+      case "-v":
         options.version = true;
         break;
 
-      case '--verbose':
+      case "--verbose":
         options.verbose = true;
         break;
 
-      case '--worker':
+      case "--worker":
         options.workerPath = args[++i];
         break;
 
-      case '--do':
+      case "--do":
         if (Array.isArray(options.durableObjects)) {
           options.durableObjects.push(args[++i]);
         } else {
@@ -80,13 +83,13 @@ function parseArgs(args: string[]): CliOptions {
         }
         break;
 
-      case '--config':
+      case "--config":
         // Config file path (handled separately)
         i++; // Skip the next arg
         break;
 
       default:
-        if (arg.startsWith('-')) {
+        if (arg.startsWith("-")) {
           console.error(`Unknown option: ${arg}`);
           process.exit(1);
         }
@@ -100,10 +103,10 @@ function loadConfig(): Partial<DurableObjectsExporterOptions> {
   const root = process.cwd();
 
   // Try .do-exporter.json first
-  const doExporterConfigPath = resolve(root, '.do-exporter.json');
+  const doExporterConfigPath = resolve(root, ".do-exporter.json");
   if (existsSync(doExporterConfigPath)) {
     try {
-      const content = readFileSync(doExporterConfigPath, 'utf-8');
+      const content = readFileSync(doExporterConfigPath, "utf-8");
       return JSON.parse(content);
     } catch (error) {
       console.warn(`Warning: Could not parse .do-exporter.json`);
@@ -111,13 +114,13 @@ function loadConfig(): Partial<DurableObjectsExporterOptions> {
   }
 
   // Try package.json
-  const packageJsonPath = resolve(root, 'package.json');
+  const packageJsonPath = resolve(root, "package.json");
   if (existsSync(packageJsonPath)) {
     try {
-      const content = readFileSync(packageJsonPath, 'utf-8');
+      const content = readFileSync(packageJsonPath, "utf-8");
       const packageJson = JSON.parse(content);
-      if (packageJson['sveltekit-cloudflare-do']) {
-        return packageJson['sveltekit-cloudflare-do'];
+      if (packageJson["sveltekit-cloudflare-do"]) {
+        return packageJson["sveltekit-cloudflare-do"];
       }
     } catch (error) {
       console.warn(`Warning: Could not parse package.json`);
@@ -128,13 +131,13 @@ function loadConfig(): Partial<DurableObjectsExporterOptions> {
 }
 
 function getVersion(): string {
-  const packageJsonPath = new URL('../package.json', import.meta.url);
+  const packageJsonPath = new URL("../package.json", import.meta.url);
   try {
-    const content = readFileSync(packageJsonPath, 'utf-8');
+    const content = readFileSync(packageJsonPath, "utf-8");
     const packageJson = JSON.parse(content);
-    return packageJson.version || 'unknown';
+    return packageJson.version || "unknown";
   } catch {
-    return 'unknown';
+    return "unknown";
   }
 }
 
@@ -161,7 +164,10 @@ function main() {
   };
 
   // If no durable objects specified, use default or config
-  if (Array.isArray(mergedOptions.durableObjects) && mergedOptions.durableObjects.length === 0) {
+  if (
+    Array.isArray(mergedOptions.durableObjects) &&
+    mergedOptions.durableObjects.length === 0
+  ) {
     delete mergedOptions.durableObjects; // Let core.ts use its default
   }
 
