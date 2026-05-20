@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-05-21
+
+### Changed
+
+- Replaced `tsc` with `tsdown` as the build tool (Rolldown-powered, faster builds)
+- Widened Vite peer dependency to include v8 (`^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0`)
+
+### Fixed
+
+- `DurableObjectNamespace<T>` type parameter is now correctly resolved by wrangler.
+  The injected footer now uses named exports (`export { MyDO } from '...'`) instead
+  of wildcard re-exports (`export * from '...'`), which wrangler previously could
+  not follow to resolve the generic type parameter.
+
 ## [0.1.0] - 2025-01-21
 
 ### Added

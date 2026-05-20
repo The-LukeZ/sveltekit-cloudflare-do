@@ -1,5 +1,5 @@
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
-import { resolve, relative } from "node:path";
+import { readFileSync, writeFileSync, existsSync } from "fs";
+import { resolve, relative } from "path";
 
 export interface DurableObjectsExporterOptions {
   /**
@@ -105,13 +105,12 @@ export function exportDurableObjects(
   const workerPath = resolve(opts.root, opts.workerPath);
 
   if (opts.verbose) {
-    console.log(`[sveltekit-cloudflare-durable-objects] Worker path: ${workerPath}`);
+    console.log(`[sveltekit-cloudflare-do] Worker path: ${workerPath}`);
     console.log(
-      `[sveltekit-cloudflare-durable-objects] Durable Objects: ${durableObjectPaths.join(", ")}`,
+      `[sveltekit-cloudflare-do] Durable Objects: ${durableObjectPaths.join(", ")}`,
     );
   }
 
-  // Check if worker file exists
   if (!existsSync(workerPath)) {
     return {
       success: false,
@@ -119,10 +118,8 @@ export function exportDurableObjects(
     };
   }
 
-  // Read the current worker file
   let workerContent = readFileSync(workerPath, "utf-8");
 
-  // Check if the export already exists (idempotency check)
   if (workerContent.includes(opts.marker)) {
     if (opts.verbose) {
       console.log("✓ Durable object exports already present in worker file");
@@ -134,11 +131,9 @@ export function exportDurableObjects(
     };
   }
 
-  // Validate that all durable object files exist
   const missingFiles: string[] = [];
   for (const doPath of durableObjectPaths) {
-    const absolutePath = resolve(opts.root, doPath);
-    if (!existsSync(absolutePath)) {
+    if (!existsSync(resolve(opts.root, doPath))) {
       missingFiles.push(doPath);
     }
   }
@@ -150,25 +145,22 @@ export function exportDurableObjects(
     };
   }
 
-  // Generate export statements
   const workerDir = resolve(workerPath, "..");
 
   const exportStatements = durableObjectPaths
     .map((doPath) => {
       const absoluteDoPath = resolve(opts.root, doPath);
-      // Calculate relative path from worker file to durable object file
       const relativePath = relative(workerDir, absoluteDoPath)
         .split("\\")
         .join("/");
 
       // Use named exports so wrangler can resolve DurableObjectNamespace<T>.
-      // Fall back to wildcard only if no names could be parsed (e.g. generated JS
-      // files with no recognisable export syntax).
+      // Fall back to wildcard only if no names could be parsed.
       const names = extractExportedNames(absoluteDoPath);
 
       if (opts.verbose) {
         console.log(
-          `[sveltekit-cloudflare-durable-objects] Exports found in ${doPath}: ${names.join(", ") || "(none — using wildcard fallback)"}`,
+          `[sveltekit-cloudflare-do] Exports found in ${doPath}: ${names.join(", ") || "(none — using wildcard fallback)"}`,
         );
       }
 
@@ -178,11 +170,9 @@ export function exportDurableObjects(
     })
     .join("\n");
 
-  // Append the export statements with marker
   const exportBlock = `\n${opts.marker}\n${exportStatements}\n`;
   workerContent += exportBlock;
 
-  // Write the updated content back
   writeFileSync(workerPath, workerContent, "utf-8");
 
   const message = `✓ Added ${durableObjectPaths.length} Durable Object export(s) to worker file`;

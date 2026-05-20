@@ -1,6 +1,7 @@
 # Source files (only publish dist/)
 src
 tsconfig.json
+tsdown.config.ts
 
 # Development files
 CLAUDE.md
