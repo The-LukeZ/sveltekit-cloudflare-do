@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2025-01-21
 
 ### Added
+
 - Initial release of sveltekit-cloudflare-durable-objects
 - Vite plugin for automatic Durable Objects export to Cloudflare Worker bundle
 - CLI tool for manual/custom build workflows
@@ -31,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Comprehensive documentation and examples
 
 ### Features
+
 - Seamless integration with SvelteKit and @sveltejs/adapter-cloudflare
 - Automatic detection of existing exports (idempotency)
 - Cross-platform path handling
