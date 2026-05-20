@@ -9,9 +9,8 @@
   },
   "exports": {
     "./cli": "./dist/cli.mjs",
-    "./core-l2mUSnnW": "./dist/core-l2mUSnnW.mjs",
     "./plugin": "./dist/plugin.mjs",
-    "./*": "./*"
+    "./package.json": "./package.json"
   },
   "files": [
     "dist",
