@@ -7,6 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm package (`sveltekit-cloudflare-durable-objects`) that solves a specific problem: SvelteKit's Cloudflare adapter generates `_worker.js` at build time, but Durable Object classes must be exported from that entry point. This package patches the generated worker file post-build.
 
 Two delivery mechanisms share one core:
+
 - **Vite plugin** (`src/plugin.ts`) — hooks into `closeBundle`, runs after SvelteKit build
 - **CLI tool** (`src/cli.ts`) — standalone binary for manual/script use
 - **Core logic** (`src/core.ts`) — `exportDurableObjects()` does the actual work for both
@@ -23,6 +24,7 @@ No test suite currently. Build is the main check.
 ## Build System
 
 Uses `tsdown` (not tsc, not vite). Config in `tsdown.config.ts`:
+
 - Two entry points: `src/plugin.ts` and `src/cli.ts`
 - Output: ESM only, Node platform, with declaration files
 - `dist/` is cleaned on each build
