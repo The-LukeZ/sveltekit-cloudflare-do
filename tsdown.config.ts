@@ -7,4 +7,8 @@ export default defineConfig({
   outDir: "dist",
   dts: true,
   clean: true,
+  exports: {
+    bin: "src/cli.ts",
+    packageJson: true,
+  },
 });
