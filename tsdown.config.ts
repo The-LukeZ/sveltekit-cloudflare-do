@@ -1,7 +1,7 @@
 import { defineConfig } from "tsdown";
 
 export default defineConfig({
-  entry: ["src/plugin.ts", "src/cli.ts"],
+  entry: { index: "src/plugin.ts", cli: "src/cli.ts" },
   format: "esm",
   platform: "node",
   outDir: "dist",
@@ -9,6 +9,6 @@ export default defineConfig({
   clean: true,
   exports: {
     bin: "src/cli.ts",
-    // packageJson: true,
+    packageJson: true,
   },
 });

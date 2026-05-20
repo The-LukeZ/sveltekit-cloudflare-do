@@ -8,8 +8,8 @@
     "sveltekit-cloudflare-durable-objects": "./dist/cli.mjs"
   },
   "exports": {
+    ".": "./dist/index.mjs",
     "./cli": "./dist/cli.mjs",
-    "./plugin": "./dist/plugin.mjs",
     "./package.json": "./package.json"
   },
   "files": [
@@ -43,6 +43,9 @@
     "node": ">=18.0.0"
   },
   "packageManager": "pnpm@11.1.3",
+  "peerDependencies": {
+    "vite": "^4.0.0 || ^5.0.0 || ^7.0.0 || ^8.0.0"
+  },
   "peerDependenciesMeta": {
     "vite": {
       "optional": true
@@ -51,8 +54,7 @@
   "devDependencies": {
     "@types/node": "^22.19.19",
     "tsdown": "^0.22.0",
-    "typescript": "latest",
-    "vite": "^8.0.13"
+    "typescript": "latest"
   },
   "dependencies": {
     "sveltekit-cloudflare-durable-objects": "link:"
