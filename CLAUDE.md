@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Is
 
-npm package (`sveltekit-cloudflare-durable-objects`) that solves a specific problem: SvelteKit's Cloudflare adapter generates `_worker.js` at build time, but Durable Object classes must be exported from that entry point. This package patches the generated worker file post-build.
+npm package (`sveltekit-cloudflare-do`) that solves a specific problem: SvelteKit's Cloudflare adapter generates `_worker.js` at build time, but Durable Object classes must be exported from that entry point. This package patches the generated worker file post-build.
 
 Two delivery mechanisms share one core:
 

@@ -11,7 +11,7 @@ import {
  * ```typescript
  * // vite.config.ts
  * import { sveltekit } from '@sveltejs/kit/vite';
- * import cloudflareDoExporter from 'sveltekit-cloudflare-durable-objects';
+ * import cloudflareDoExporter from 'sveltekit-cloudflare-do';
  *
  * export default defineConfig({
  *   plugins: [
@@ -29,7 +29,7 @@ export default function cloudflareDoExporter(
   let root: string;
 
   return {
-    name: "sveltekit-cloudflare-durable-objects",
+    name: "sveltekit-cloudflare-do",
 
     // 'post' ensures this plugin's hooks run after all other plugins,
     // including the SvelteKit plugin that runs the Cloudflare adapter.

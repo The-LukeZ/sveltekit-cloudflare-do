@@ -1,11 +1,11 @@
 {
-  "name": "sveltekit-cloudflare-durable-objects",
+  "name": "sveltekit-cloudflare-do",
   "version": "0.2.0",
   "description": "Bridge the gap between SvelteKit and Cloudflare Durable Objects - automatic export of Durable Objects to your worker bundle",
   "type": "module",
   "types": "./dist/plugin.d.mts",
   "bin": {
-    "sveltekit-cloudflare-durable-objects": "./dist/cli.mjs"
+    "sveltekit-cloudflare-do": "./dist/cli.mjs"
   },
   "exports": {
     ".": "./dist/index.mjs",
@@ -33,12 +33,13 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jillesme/sveltekit-cloudflare-durable-objects.git"
+    "url": "git+https://github.com/The-LukeZ/sveltekit-cloudflare-do.git"
   },
   "bugs": {
-    "url": "https://github.com/jillesme/sveltekit-cloudflare-durable-objects/issues"
+    "url": "https://github.com/The-LukeZ/sveltekit-cloudflare-do/issues"
   },
-  "homepage": "https://github.com/jillesme/sveltekit-cloudflare-durable-objects#readme",
+  "homepage": "https://github.com/The-LukeZ/sveltekit-cloudflare-do#readme",
+  "forkedFrom": "https://github.com/jillesme/sveltekit-cloudflare-durable-objects",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -57,6 +58,6 @@
     "typescript": "latest"
   },
   "dependencies": {
-    "sveltekit-cloudflare-durable-objects": "link:"
+    "sveltekit-cloudflare-do": "link:"
   }
 }

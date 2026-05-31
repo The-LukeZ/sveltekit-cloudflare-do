@@ -8,7 +8,7 @@ import {
 } from "./core.js";
 
 const HELP_TEXT = `
-sveltekit-cloudflare-durable-objects - Export Durable Objects to Cloudflare Workers
+sveltekit-cloudflare-do - Export Durable Objects to Cloudflare Workers
 
 Usage:
   sveltekit-cloudflare-do [options]

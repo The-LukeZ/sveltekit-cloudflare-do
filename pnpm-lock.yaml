@@ -8,11 +8,11 @@ importers:
 
   .:
     dependencies:
-      sveltekit-cloudflare-durable-objects:
+      sveltekit-cloudflare-do:
         specifier: 'link:'
         version: 'link:'
       vite:
-        specifier: ^4.0.0 || ^5.0.0 || ^7.0.0 || ^8.0.0
+        specifier: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
         version: 8.0.13(@types/node@22.19.19)
     devDependencies:
       '@types/node':
