@@ -1,6 +1,6 @@
 {
   "name": "sveltekit-cloudflare-do",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Bridge the gap between SvelteKit and Cloudflare Durable Objects - automatic export of Durable Objects to your worker bundle",
   "type": "module",
   "types": "./dist/plugin.d.mts",
